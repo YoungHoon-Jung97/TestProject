@@ -20,7 +20,7 @@
 	
 	<bean id="localDataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="url" value="jdbc:oracle:thin:@211.238.142.165:1521:xe"></property>
 		<property name="username" value="scott"></property>
 		<property name="password" value="tiger"></property>
 	</bean>
@@ -81,5 +81,28 @@
 		<property name="regionDao" ref="RegionDAO"></property>
 		<property name="departmentDao" ref="DepartmentDAO"></property>
 	</bean>
+	
+	<bean name="/employeeupdate.action" class="com.test.mvc.EmployeeUpdateController">
+		<property name="dao" ref="EmployeeDAO"></property>
+	</bean>
+	
+	<bean name="/employeedelete.action" class="com.test.mvc.EmployeeDeleteController">
+		<property name="dao" ref="EmployeeDAO"></property>
+	</bean>
+	
+	
+	
+	<!-- ○ Logion 및 Logout 관련 Controller 등록 -->
+	<bean name="/loginform.action" class="com.test.mvc.LoginFormController"></bean>
+	
+	<bean name="/login.action" class="com.test.mvc.LoginController">
+		<property name="dao" ref="EmployeeDAO"></property>
+	</bean>
+	
+	<bean name="/emplist.action" class="com.test.mvc.EmpListController">
+		<property name="dao" ref="EmployeeDAO"></property>
+	</bean>
+	
+	<bean name="/logout.action" class="com.test.mvc.LogoutController"></bean>
 	 
 </beans>

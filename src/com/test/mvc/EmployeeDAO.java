@@ -233,9 +233,9 @@ public class EmployeeDAO implements IEmployeeDAO
 	{
 		int result = 0;
 		Connection conn = dataSource.getConnection();
-		String sql= "DELETE" + 
-				"FROM EMPLOYEE" + 
-				"WHERE EMPLOYEEID= ?";
+		String sql= "DELETE"
+				+ " FROM EMPLOYEE"
+				+ " WHERE EMPLOYEEID = ?";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
@@ -254,11 +254,10 @@ public class EmployeeDAO implements IEmployeeDAO
 		String sql= "UPDATE EMPLOYEE SET NAME=?"
 				+ ", BIRTHDAY=TO_DATE(?, 'YYYY-MM-DD')"
 				+ ", LUNAR=?, TELEPHONE=?"
-				+ ", DEPARTMENTID=?, POSITIONID=?"
-				+ ", REGIONID=?, BASICPAY=?"
-				+ ", EXTRAPAY=?, SSN1=?"
-				+ ", SSN2=CRYPTPACK.ENCRYPT(?, ?)"
-				+ ", WHERE EMPLOYEEID=?" ;
+				+ ", DEPARTMENTID=?, POSITIONID=?, REGIONID=?"
+				+ ", BASICPAY=?, EXTRAPAY=?"
+				+ ", SSN1=?, SSN2=CRYPTPACK.ENCRYPT(?, ?)"
+				+ "	 WHERE EMPLOYEEID=?" ;
 		
 		PreparedStatement pstmt = 	conn.prepareStatement(sql);
 		
@@ -331,10 +330,9 @@ public class EmployeeDAO implements IEmployeeDAO
 		String result = null;
 		Connection conn = dataSource.getConnection();
 		String sql= "SELECT NAME" + 
-				"FROM EMPLOYEE" + 
-				"WHERE EMPLOYEEID = ?" + 
-				"  AND SSN2 = CRYPTPACK.ENCRYPT(?, ?)" + 
-				"  AND GRADE =1";
+				" FROM EMPLOYEE" + 
+				" WHERE EMPLOYEEID = ?" + 
+				"  AND SSN2 = CRYPTPACK.ENCRYPT(?, ?)" ;
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
@@ -358,8 +356,8 @@ public class EmployeeDAO implements IEmployeeDAO
 		String result = null;
 		Connection conn = dataSource.getConnection();
 		String sql= "SELECT NAME" + 
-				"FROM EMPLOYEE" + 
-				"WHERE EMPLOYEEID = ?" + 
+				" FROM EMPLOYEE " + 
+				" WHERE EMPLOYEEID = ?" + 
 				"  AND SSN2 = CRYPTPACK.ENCRYPT(?, ?)" + 
 				"  AND GRADE =0";
 		

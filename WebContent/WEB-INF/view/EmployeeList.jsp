@@ -30,6 +30,16 @@
 			
 		});
 		
+		$(".deleteBtn").click(function()
+		{
+			
+			//alert("삭제 버튼 클릭");
+			if (confirm("현재 선택한 데이터를 정말 삭제하시겠습니까?"))
+			{
+				$(location).attr("href","employeedelete.action?employeeId=" +$(this).val());
+			}
+		});
+		
 	});
 
 </script>

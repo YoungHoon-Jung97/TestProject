@@ -18,6 +18,10 @@
         border-collapse: collapse; /* 테이블 경계선 중복 제거 */
        
     }
+    table.table th,
+	table.table td {
+	    text-align: left; /* 가운데 정렬을 없애고 왼쪽 정렬로 변경 */
+	}
     
 
 </style>

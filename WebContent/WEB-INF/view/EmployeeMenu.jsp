@@ -20,24 +20,46 @@
 	-메인 메뉴 페이지 구성
 
   -->
+<%-- <span>${sessionScope.admin==null ? "normal" : "admin"}</span> --%>
   
 <div id="menu">
 	<ul>
+		<c:choose>
+			<c:when test="${sessionScope.admin==null}">
+				<li>
+					<a href="emplist.action" class="menu">직원 정보</a>
+				</li>
+				<li>
+					<a href="reglist.action" class="menu">지역 정보</a>
+				</li>
+				<li>
+					<a href="deptlist.action" class="menu">부서 정보</a>
+				</li>
+				<li>
+					<a href="poslist.action" class="menu">직위 정보</a>
+				</li>
+			</c:when>	
+			<c:otherwise>			
+				<li>
+					<a href="employeelist.action" class="menu">직원 관리</a>
+				</li>
+				<li>
+					<a href="regionlist.action" class="menu">지역 관리</a>
+				</li>
+				<li>
+					<a href="departmentlist.action" class="menu">부서 관리</a>
+				</li>
+				<li>
+					<a href="positionlist.action" class="menu">직위 관리</a>
+				</li>				
+			</c:otherwise>
+		</c:choose>
+		
 		<li>
-			<a href="employeelist.action" class="menu">직원 관리</a>
+			<a href="logout.action" class="menu">로그 아웃</a>
 		</li>
-		<li>
-			<a href="regionlist.action" class="menu">지역 관리</a>
-		</li>
-		<li>
-			<a href="department.action" class="menu">부서 관리</a>
-		</li>
-		<li>
-			<a href="position.action" class="menu">직위 관리</a>
-		</li>
-		<li>
-			<a href="login.action" class="menu">로그 아웃</a>
-		</li>
+
+
 	</ul>
  </div>
 
