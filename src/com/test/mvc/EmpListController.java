@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -34,9 +35,21 @@ public class EmpListController implements Controller
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
-		// Controller 가 수행해야 할 액션 코드
 		
+		// Controller 가 수행해야 할 액션 코드
 		ModelAndView mav = new ModelAndView();
+		
+		// 자격 검증
+		//-- 정상적인 로그인 과정을 거쳤는지의 여부 확인
+		//	→ 세션에 대한 확인으로 처리
+
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("name")==null)			//-- 로그인이 되어있지 않은 상황
+		{
+			mav.setViewName("redirect:loginform.action");
+			return mav;
+		}
 		
 		ArrayList<Employee> employeeList = new ArrayList<Employee>();
 		

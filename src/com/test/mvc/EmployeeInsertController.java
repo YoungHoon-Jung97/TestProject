@@ -8,6 +8,7 @@ package com.test.mvc;
 import javax.activation.DataSource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
@@ -31,6 +32,19 @@ public class EmployeeInsertController implements Controller
 
 		// 이름, 주민번호앞, 주민번호 뒷, 생년월일, 전화번호,
 		ModelAndView mav = new ModelAndView();
+		
+		HttpSession session = request.getSession();
+		
+		if (session.getAttribute("name") == null)		//로그인 안되어 있을 경우
+		{
+			mav.setViewName("redirect:loginform.action");
+			return mav;
+		}
+		else if(session.getAttribute("admin")==null)	//관리자 아이디로 다시 로그인
+		{
+			mav.setViewName("redirect:logout.action");
+			return mav;
+		}
 
 		String name = request.getParameter("name");
 		String birthday = request.getParameter("birthday");
