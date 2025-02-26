@@ -120,7 +120,7 @@ public class DepartmentDAO implements IDepartmentDAO
 		public Department searchName(String departmentName) throws SQLException
 		{
 			Connection conn = dataSource.getConnection();
-			Department result = new Department();
+			Department result = null;
 			
 			String sql = "SELECT DEPARTMENTID, DEPARTMENTNAME FROM DEPARTMENTVIEW WHERE DEPARTMENTNAME = ?";
 			
@@ -132,7 +132,7 @@ public class DepartmentDAO implements IDepartmentDAO
 			
 			if (rs.next())
 			{
-				
+				result = new Department();
 				result.setDepartmentId(rs.getString("DEPARTMENTID"));
 				result.setDepartmentName(rs.getString("DEPARTMENTNAME"));
 			}

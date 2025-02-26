@@ -54,15 +54,25 @@ public class PositionInsertController implements Controller
 		int minBasicPay = Integer.parseInt(minBasicPaystr);
 		try
 		{
-			Position position = new Position();
 			
-			position.setPositionName(positionName);
-			position.setMinBasicPay(minBasicPay);
+			Position pos = dao.searchName(positionName);
+			if(pos == null) {
+				
+				Position position = new Position();
+				position.setPositionName(positionName);
+				position.setMinBasicPay(minBasicPay);
+				
+				dao.add(position);
+				
+				mav.setViewName("redirect:positionlist.action");
+				return mav;
+			}
 			
-			dao.add(position);
-			
-			
+			String message = "이미 존재하는 데이터 입니다.";
+			mav.addObject("message", message);
 			mav.setViewName("redirect:positionlist.action");
+			
+		
 			
 			
 		} catch (Exception e)

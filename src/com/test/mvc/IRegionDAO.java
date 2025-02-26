@@ -16,4 +16,5 @@ public interface IRegionDAO
 	public int remove(String regionId) throws SQLException;
 	public int modify(Region region) throws SQLException;
 	public Region search(String regionId) throws SQLException;
+	public Region searchName(String regionName) throws SQLException;
 }

@@ -101,7 +101,7 @@
 				</c:forEach>
 				
 		  </table>
-		  <div id="worring">${params.message }</div>
+		  <div id="worring">${param.message }</div>
 		
 	</div>
 </div>

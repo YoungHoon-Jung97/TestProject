@@ -139,4 +139,27 @@ public class PositionDAO implements IPositionDAO
 			return result;
 		}
 		
+		public Position searchName(String positionName) throws SQLException
+		{
+			Connection conn = dataSource.getConnection();
+			Position result = null;
+			
+			String sql = "SELECT POSITIONID, POSITIONNAME FROM POSITIONVIEW WHERE POSITIONNAME = ?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,positionName);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next())
+			{
+				result = new Position();
+				result.setPositionId(rs.getString("POSITIONID"));
+				result.setPositionName(rs.getString("POSITIONNAME"));
+			}
+			
+			return result;
+		}
+		
 }

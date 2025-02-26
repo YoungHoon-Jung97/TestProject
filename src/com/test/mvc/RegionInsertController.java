@@ -49,12 +49,29 @@ public class RegionInsertController implements Controller
 		
 		String regionName =request.getParameter("name");
 		
-		Region region = new Region();
-		region.setRegionName(regionName);
 		
-		dao.add(region);
-		
-		mav.setViewName("redirect:regionlist.action");
+		try
+		{
+			Region reg = dao.searchName(regionName);
+			if(reg == null) {
+				
+				Region region = new Region();
+				region.setRegionName(regionName);
+				
+				dao.add(region);
+				
+				mav.setViewName("redirect:regionlist.action");
+				return mav;
+			}
+			
+			String message = "이미 존재하는 데이터 입니다.";
+			mav.addObject("message", message);
+			mav.setViewName("redirect:regionlist.action");
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
 	
 		return mav;
 	}

@@ -56,7 +56,7 @@ public class DepartmentInsertController implements Controller
 		{
 			Department dep = dao.searchName(departmentName);
 			
-			if(dep.getDepartmentName() == null)
+			if(dep == null)
 			{
 				Department department = new Department();
 				department.setDepartmentName(departmentName);

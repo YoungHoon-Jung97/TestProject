@@ -100,6 +100,7 @@
 				</c:forEach>
 			
 		  </table>
+		  <div id="worring">${param.message }</div>
 		
 	</div>
 </div>
