@@ -38,7 +38,7 @@ public class PositionDAO implements IPositionDAO
 			
 			Statement stmt = conn.createStatement();
 			
-			String sql="SELECT POSITIONID, POSITIONNAME FROM POSITIONVIEW";
+			String sql="SELECT POSITIONID, POSITIONNAME, MINBASICPAY, DELCHECK FROM POSITIONVIEW";
 			
 			ResultSet rs = stmt.executeQuery(sql);
 			
@@ -48,6 +48,8 @@ public class PositionDAO implements IPositionDAO
 				
 				position.setPositionId(rs.getString("POSITIONID"));
 				position.setPositionName(rs.getString("POSITIONNAME"));
+				position.setMinBasicPay(rs.getInt("MINBASICPAY"));
+				position.setDelCheck(rs.getInt("DELCHECK"));
 			
 				
 				result.add(position);
@@ -65,12 +67,13 @@ public class PositionDAO implements IPositionDAO
 			
 			Connection conn = dataSource.getConnection();
 			
-			String sql = "INSERT INTO POSITION(POSITIONID, POSITIONNAME)"
-					+ " VALUES(POSITIONSEQ.NEXTVAL, ?)";
+			String sql = "INSERT INTO POSITION(POSITIONID, POSITIONNAME,MINBASICPAY)"
+					+ " VALUES(POSITIONSEQ.NEXTVAL, ?,?)";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1,position.getPositionName());
+			pstmt.setInt(2,position.getMinBasicPay());
 			
 			int result = pstmt.executeUpdate();
 			
@@ -98,15 +101,42 @@ public class PositionDAO implements IPositionDAO
 		{
 			Connection conn = dataSource.getConnection();
 			
-			String sql = "UPDATE POSITION SET POSITIONNAME=? WHERE POSITIONID=?";
+			String sql = "UPDATE POSITION SET POSITIONNAME=? ,MINBASICPAY=? WHERE POSITIONID=?";
 			
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1,position.getPositionName());
-			pstmt.setString(2,position.getPositionId());
+			pstmt.setInt(2,position.getMinBasicPay());
+			pstmt.setString(3,position.getPositionId());
 			
 			int result = pstmt.executeUpdate();
 			
 			return result;
 		}
+		
+		@Override
+		public Position search(String positionId) throws SQLException
+		{
+			Connection conn = dataSource.getConnection();
+			Position result = new Position();
+			
+			String sql = "SELECT POSITIONID, POSITIONNAME, MINBASICPAY FROM POSITION WHERE POSITIONID = ?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,positionId);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next())
+			{
+				
+				result.setPositionId(rs.getString("POSITIONID"));
+				result.setPositionName(rs.getString("POSITIONNAME"));
+				result.setMinBasicPay(rs.getInt("MINBASICPAY"));
+			}
+			
+			return result;
+		}
+		
 }

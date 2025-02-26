@@ -39,7 +39,7 @@ public class RegionDAO implements IRegionDAO
 		
 		Statement stmt = conn.createStatement();
 		
-		String sql="SELECT REGIONID, REGIONNAME FROM REGIONVIEW";
+		String sql="SELECT REGIONID, REGIONNAME,DELCHECK FROM REGIONVIEW";
 		
 		ResultSet rs = stmt.executeQuery(sql);
 		
@@ -49,6 +49,7 @@ public class RegionDAO implements IRegionDAO
 			
 			region.setRegionId(rs.getString("REGIONID"));
 			region.setRegionName(rs.getString("REGIONNAME"));
+			region.setDelCheck(rs.getInt("DELCHECK"));
 			
 			result.add(region);
 			
@@ -93,6 +94,7 @@ public class RegionDAO implements IRegionDAO
 		
 		return result;
 	}
+	
 
 	@Override
 	public int modify(Region region) throws SQLException
@@ -107,6 +109,30 @@ public class RegionDAO implements IRegionDAO
 		pstmt.setString(2,region.getRegionId());
 		
 		int result = pstmt.executeUpdate();
+		
+		return result;
+	}
+
+	@Override
+	public Region search(String regionId) throws SQLException
+	{
+		Connection conn = dataSource.getConnection();
+		Region result = new Region();
+		
+		String sql = "SELECT REGIONID, REGIONNAME FROM REGIONVIEW WHERE REGIONID = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1,regionId);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		if (rs.next())
+		{
+			
+			result.setRegionId(rs.getString("REGIONID"));
+			result.setRegionName(rs.getString("REGIONNAME"));
+		}
 		
 		return result;
 	}

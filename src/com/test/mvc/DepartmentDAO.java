@@ -38,7 +38,7 @@ public class DepartmentDAO implements IDepartmentDAO
 			
 			Statement stmt = conn.createStatement();
 			
-			String sql="SELECT DEPARTMENTID, DEPARTMENTNAME FROM DEPARTMENT";
+			String sql="SELECT DEPARTMENTID, DEPARTMENTNAME, DELCHECK FROM DEPARTMENTVIEW";
 			
 			ResultSet rs = stmt.executeQuery(sql);
 			
@@ -48,6 +48,7 @@ public class DepartmentDAO implements IDepartmentDAO
 				
 				department.setDepartmentId(rs.getString("DEPARTMENTID"));
 				department.setDepartmentName(rs.getString("DEPARTMENTNAME"));
+				department.setDelCheck(rs.getInt("DELCHECK"));
 				
 				result.add(department);
 				
@@ -88,6 +89,53 @@ public class DepartmentDAO implements IDepartmentDAO
 			pstmt.setString(1,departmentId);
 			
 			int result = pstmt.executeUpdate();
+			
+			return result;
+		}
+		
+		@Override
+		public Department search(String departmentId) throws SQLException
+		{
+			Connection conn = dataSource.getConnection();
+			Department result = new Department();
+			
+			String sql = "SELECT DEPARTMENTID, DEPARTMENTNAME FROM DEPARTMENTVIEW WHERE DEPARTMENTID = ?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,departmentId);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next())
+			{
+				
+				result.setDepartmentId(rs.getString("DEPARTMENTID"));
+				result.setDepartmentName(rs.getString("DEPARTMENTNAME"));
+			}
+			
+			return result;
+		}
+		
+		public Department searchName(String departmentName) throws SQLException
+		{
+			Connection conn = dataSource.getConnection();
+			Department result = new Department();
+			
+			String sql = "SELECT DEPARTMENTID, DEPARTMENTNAME FROM DEPARTMENTVIEW WHERE DEPARTMENTNAME = ?";
+			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,departmentName);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next())
+			{
+				
+				result.setDepartmentId(rs.getString("DEPARTMENTID"));
+				result.setDepartmentName(rs.getString("DEPARTMENTNAME"));
+			}
 			
 			return result;
 		}

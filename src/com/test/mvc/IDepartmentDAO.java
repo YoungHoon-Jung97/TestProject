@@ -15,4 +15,6 @@ public interface IDepartmentDAO
 	public int add(Department department) throws SQLException;
 	public int remove(String departmentId) throws SQLException;
 	public int modify(Department department) throws SQLException;
+	public Department search(String departmentId)throws SQLException;
+	public Department searchName(String departmentName)throws SQLException;
 }
