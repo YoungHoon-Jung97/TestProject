@@ -1,5 +1,5 @@
 /*=========================
- * HelloCotroller.java
+ * AjaxController.java
  * -사용자 정의 컨트롤러
 =========================*/
 
@@ -19,9 +19,7 @@ public class AjaxController implements Controller
 {
 	private IEmployeeDAO dao;
 	
-
-
-
+	
 	public void setDao(IEmployeeDAO dao)
 	{
 		this.dao = dao;

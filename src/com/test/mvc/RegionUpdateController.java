@@ -53,13 +53,25 @@ public class RegionUpdateController implements Controller
 		
 		try
 		{
-			Region region = new Region();
+			Region reg = dao.searchName(regionName);
 			
-			region.setRegionId(regionId);
-			region.setRegionName(regionName);
+			if (reg == null)
+			{
+				Region region = new Region();
+				
+				region.setRegionId(regionId);
+				region.setRegionName(regionName);
+				
+				dao.modify(region);
+				
+				mav.setViewName("redirect:regionlist.action");
+				return mav;
+			}
 			
-			dao.modify(region);
 			
+			
+			String message = "이미 존재로 수정할 수 없습니다.";
+			mav.addObject("message", message);
 			mav.setViewName("redirect:regionlist.action");
 			
 		} catch (Exception e)

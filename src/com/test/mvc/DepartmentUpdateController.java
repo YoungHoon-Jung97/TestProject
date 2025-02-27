@@ -1,5 +1,5 @@
 /*=========================
- * HelloCotroller.java
+ * DepartmentUpdateController.java
  * -사용자 정의 컨트롤러
 =========================*/
 
@@ -53,12 +53,23 @@ public class DepartmentUpdateController implements Controller
 		
 		try
 		{
-			Department department = new Department();
+			Department dep = dao.searchName(departmentName);
 			
-			department.setDepartmentId(departmentId);
-			department.setDepartmentName(departmentName);
-			dao.modify(department);
+			if (dep == null)
+			{
+				
+				Department department = new Department();
+				
+				department.setDepartmentId(departmentId);
+				department.setDepartmentName(departmentName);
+				dao.modify(department);
+				
+				mav.setViewName("redirect:departmentlist.action");
+				return mav;
+			}
 			
+			String message = "이미 존재로 수정할 수 없습니다.";
+			mav.addObject("message", message);
 			mav.setViewName("redirect:departmentlist.action");
 			
 			

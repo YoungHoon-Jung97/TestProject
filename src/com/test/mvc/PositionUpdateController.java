@@ -1,5 +1,5 @@
 /*=========================
- * HelloCotroller.java
+ * PositionUpdateController.java
  * -사용자 정의 컨트롤러
 =========================*/
 
@@ -54,15 +54,26 @@ public class PositionUpdateController implements Controller
 		
 		try
 		{
-			Position position = new Position();
+			Position pos = dao.searchName(positonName);
 			
-			position.setMinBasicPay(minBasicPay);
-			position.setPositionId(positionId);
-			position.setPositionName(positonName);
+			if (pos == null)
+			{
+				
+				Position position = new Position();
+				
+				position.setMinBasicPay(minBasicPay);
+				position.setPositionId(positionId);
+				position.setPositionName(positonName);
+				
+				
+				dao.modify(position);
+				
+				mav.setViewName("redirect:positionlist.action");
+				return mav;
+			}
 			
-			
-			dao.modify(position);
-			
+			String message = "이미 존재로 수정할 수 없습니다.";
+			mav.addObject("message", message);
 			mav.setViewName("redirect:positionlist.action");
 			
 		} catch (Exception e)
