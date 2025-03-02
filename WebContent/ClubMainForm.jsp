@@ -213,8 +213,9 @@
 </div>
 <!--//GNB  -->
 
-<div class="wrap_inner">
-	<main id ="container">
+<main>
+	<!--왼쪽 화면  -->
+	<div class="wrap_left">
 		<h2 class="blind">메인 컨텐츠 영역</h2>
 		
 		<!--공지사항  -->
@@ -242,7 +243,7 @@
 						        <th scope="col">조회</th>
 						    </tr>
 						</thead>
-
+	
 						<!--공지사항 내용  -->
 						<tbody class="ann_contents">
 							<tr class="content">
@@ -276,14 +277,14 @@
 		
 		<!--일정  -->
 		<section class="left_bottom_content">
-    		<div id="calendar">
-        		<div class="calendar-header">
-            		<button id="prevMonth">&lt;</button>
-            		<h2 id="currentMonth">3</h2>
-            		<button id="nextMonth">&gt;</button>
-        		</div>
-        		<table>
-            		<thead>
+	   		<div id="calendar">
+	       		<div class="calendar-header">
+	           		<button id="prevMonth">&lt;</button>
+	           		<h2 id="currentMonth">3</h2>
+	           		<button id="nextMonth">&gt;</button>
+	       		</div>
+	       		<table>
+	           		<thead>
 	                	<tr>
 		                    <th>일</th>
 		                    <th>월</th>
@@ -293,74 +294,144 @@
 		                    <th>금</th>
 		                    <th>토</th>
 	                	</tr>
-            		</thead>
-            		<tbody id="calendarBody">
-            			<tr>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td>1</td>
-            			</tr>
-            			<tr>
-            				<td>2</td>
-            				<td>3</td>
-            				<td>4</td>
-            				<td>5</td>
-            				<td>6</td>
-            				<td>7</td>
-            				<td>8</td>
-            			</tr>
-            			<tr>
-            				<td>9</td>
-            				<td>10</td>
-            				<td>11</td>
-            				<td>12</td>
-            				<td>13</td>
-            				<td>14</td>
-            				<td>15</td>
-            			</tr>
-            			<tr>
-            				<td>16</td>
-            				<td>17</td>
-            				<td>18</td>
-            				<td>19</td>
-            				<td>20</td>
-            				<td>21</td>
-            				<td>22</td>
-            			</tr>
-            			<tr>
-            				<td>23</td>
-            				<td>24</td>
-            				<td>25</td>
-            				<td>26</td>
-            				<td>27</td>
-            				<td>28</td>
-            				<td>29</td>
-            			</tr>
-            			<tr>
-            				<td>30</td>
-            				<td>31</td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            				<td></td>
-            			</tr>
-            		</tbody>
-        		</table>
-    		</div>
+	           		</thead>
+	           		<tbody id="calendarBody">
+	           			<tr>
+	           				<td></td>
+	           				<td></td>
+	           				<td></td>
+	           				<td></td>
+	           				<td></td>
+	           				<td></td>
+	           				<td>1</td>
+	           			</tr>
+	           			<tr>
+	           				<td>2</td>
+	           				<td>3</td>
+	           				<td>4</td>
+	           				<td>5</td>
+	           				<td>6</td>
+	           				<td>7</td>
+	           				<td>8</td>
+	           			</tr>
+	           			<tr>
+	           				<td>9</td>
+	           				<td>10</td>
+	           				<td>11</td>
+	           				<td>12</td>
+	           				<td>13</td>
+	           				<td>14</td>
+	           				<td>15</td>
+	           			</tr>
+	           			<tr>
+	           				<td>16</td>
+	           				<td>17</td>
+	           				<td>18</td>
+	           				<td>19</td>
+	           				<td>20</td>
+	           				<td>21</td>
+	           				<td>22</td>
+	           			</tr>
+	           			<tr>
+	           				<td>23</td>
+	           				<td>24</td>
+	           				<td>25</td>
+	           				<td>26</td>
+	           				<td>27</td>
+	           				<td>28</td>
+	           				<td>29</td>
+	           			</tr>
+	           			<tr>
+	           				<td>30</td>
+	           				<td>31</td>
+	           				<td></td>
+	           				<td></td>
+	           				<td></td>
+	           				<td></td>
+	           				<td></td>
+	           			</tr>
+	           		</tbody>
+	       		</table>
+	   		</div>
 		</section>
 		<!--//일정  -->
-			
-		<!--동호회 회원 정보  -->
-		<section class="right_content">
-			
+	</div>
+	<!--//왼쪽 화면  -->
+	
+	<!--오른쪽 화면  -->
+	<div class="wrap_right">
+		<!--동호회 정보 맴버 리스트  -->
+		<div class="section">
+			<!--동호회 맴버 정보  -->
+			<div class="section_head">
+				<div class="section_title"> 주요 멤버</div>
+			</div>
+			<div class="section_list">
+				<li>
+					<a href="">
+						<div class="member_profile"></div>
+						<div class="member_inform">
+							<p class="member_name">정영훈</p>
+							<span class="member_level">아마추어3</span>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<div class="member_profile"></div>
+						<div class="member_inform">
+							<p class="member_name">김민승</p>
+							<span class="member_level">비기너1</span>
+						</div>
+					</a>
+				</li>
+			</div>
+		</div>
+		<!--//동호회 정보 맴버 리스트  -->
+		
+		<!--동호회 정보 리스트  -->
+		<section class="section">
+			<div class="section_head">
+				<div class="section_title">팀정보</div>
+			</div>
+			<div class="section_list_wrapper">
+				<div class="club_region">
+					<span>지역</span>
+					<span class="region_name">
+						인천
+					</span>
+				</div>
+				<div class="club_homeground">
+					<span>홈 구장</span>
+					<span class="homeground_name">
+						인천 계양 고고풋살
+					</span>
+				</div>
+				<div class="club_age">
+					<span>평균 나이</span>
+					<span class="age_average">
+						26세
+					</span>
+				</div>
+				<div class="club_member">
+					<span>멤버</span>
+					<span class="member_count">
+						4명
+					</span>
+				</div>
+				<div class="club_level">
+					<span>레벨</span>
+					<span class="level">
+						프로
+					</span>
+				</div>
+			</div>
 		</section>
-	</main>
-</div>
+		<!--//동호회 정보 리스트  -->
+	</div>
+	<!--//오른쪽 화면  -->
+</main>
+
 
 </body>
 </html>
